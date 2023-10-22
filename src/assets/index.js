@@ -1,0 +1,4 @@
+export { default as logo } from "./logo.png";
+export { default as category_icon } from "./category.svg";
+export { default as statistic_icon } from "./statistic.svg";
+export { default as filter_icon } from "./filter.svg";
