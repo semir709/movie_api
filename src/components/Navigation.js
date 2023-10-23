@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { logo, category_icon, statistic_icon } from "../assets";
+import SearchBar from "./SearchBar";
 
 const Navigation = () => {
   return (
@@ -33,7 +34,7 @@ const Navigation = () => {
             </ul>
           </div>
         </div>
-        <div>Search</div>
+        <SearchBar />
       </div>
     </>
   );
