@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { close_icon, search_icon } from "../assets";
+import { Close_icon, Search_icon } from "../assets";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,6 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const input = useRef(null);
   const navigate = useNavigate();
-  const timerRef = useRef(null);
 
   useEffect(() => {
     const timeID = setTimeout(() => {
@@ -37,11 +36,7 @@ const SearchBar = () => {
         value={searchTerm}
       />
       <label htmlFor="search" className="ms-3 hover:cursor-pointer  w-[25px]">
-        {searchTerm ? (
-          <img src={close_icon} alt="search_icon" onClick={onClose} />
-        ) : (
-          <img src={search_icon} alt="search_icon" />
-        )}
+        {searchTerm ? <Close_icon onClick={onClose} /> : <Search_icon />}
       </label>
     </div>
   );
