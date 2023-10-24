@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Statistic_icon, logo, Category_icon, Logo } from "../assets";
 import { List, SearchBar } from "../components/index";
+import { genres, main_filter } from "../utils/constants";
 
 const Navigation = () => {
-  const [toggle, setToggle] = useState(false);
   return (
     <>
       <div className="bg-custom-black py-4 px-custom-side text-white flex items-center justify-between">
@@ -17,21 +17,14 @@ const Navigation = () => {
           <div className="ms-5">
             <ul className="flex items-center">
               <li className="mx-3 cursor-pointer ">
-                <List
-                  text={"Category"}
-                  Icon={Category_icon}
-                  list={["Action", "Horror", "Drama"]}
-                  toggle={toggle}
-                  setToggle={setToggle}
-                />
+                <List text={"Category"} Icon={Category_icon} list={genres} />
               </li>
               <li className="mx-3 cursor-pointer">
-                <div className="flex items-center group">
-                  <Statistic_icon className="group-hover:stroke-custom-pink" />
-                  <span className="ms-2 group-hover:text-custom-pink">
-                    Category
-                  </span>
-                </div>
+                <List
+                  text={"Meters"}
+                  Icon={Statistic_icon}
+                  list={main_filter}
+                />
               </li>
             </ul>
           </div>

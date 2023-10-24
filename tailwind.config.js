@@ -12,6 +12,9 @@ module.exports = {
       padding: {
         "custom-side": "120px",
       },
+      margin: {
+        "custom-side": "120px",
+      },
     },
   },
   plugins: [],
