@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Statistic_icon, logo, Category_icon } from "../assets";
+import { Statistic_icon, logo, Category_icon, Logo } from "../assets";
 
 import SearchBar from "./SearchBar";
 
@@ -11,7 +11,7 @@ const Navigation = () => {
         <div className="flex items-center">
           <div className="me-5">
             <Link to={"/"}>
-              <img src={logo} alt="logo" />
+              <Logo className="hover:fill-custom-pink" />
             </Link>
           </div>
           <div className="ms-5">
@@ -27,7 +27,9 @@ const Navigation = () => {
               <li className="mx-3 cursor-pointer">
                 <div className="flex items-center group">
                   <Statistic_icon className="group-hover:stroke-custom-pink" />
-                  <span className="ms-2 hover:text-custom-pink">Category</span>
+                  <span className="ms-2 group-hover:text-custom-pink">
+                    Category
+                  </span>
                 </div>
               </li>
             </ul>
