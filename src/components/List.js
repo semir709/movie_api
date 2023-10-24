@@ -23,7 +23,10 @@ const List = ({ Icon, text, list }) => {
           <ul className="grid grid-cols-5 w-full justify-items-center text-2xl">
             {list.map(({ value, text }) => (
               <li className="mb-5 text-center" key={value}>
-                <Link to={`/category/${value}`}>
+                <Link
+                  to={`/category/${value}`}
+                  onClick={() => setToggle(false)}
+                >
                   <span className="hover:underline underline-offset-[15px] ">
                     {text}
                   </span>
