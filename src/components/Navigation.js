@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Ranking_icon, logo, Category_icon, Logo } from "../assets";
+import { Ranking_icon, Category_icon, Logo } from "../assets";
 import { List, SearchBar } from "../components/index";
-import { genres, main_filter } from "../utils/constants";
+import { main_filter, genres } from "../utils/constants";
 
 const Navigation = () => {
   return (
@@ -19,6 +19,7 @@ const Navigation = () => {
               <li className="mx-3 cursor-pointer ">
                 <List text={"Category"} Icon={Category_icon} list={genres} />
               </li>
+
               <li className="mx-3 cursor-pointer">
                 <List
                   text={"Rankings"}
