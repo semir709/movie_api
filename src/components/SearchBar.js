@@ -25,17 +25,17 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center bg-white rounded-md ">
+    <div className="flex items-center justify-between bg-white rounded-md h-fit w-full ">
       <input
         ref={input}
         type="text"
         id="search"
         placeholder="Search..."
-        className="text-custom-black outline-none ps-2 rounded-md"
+        className="text-custom-black outline-none ps-2 rounded-md py-1 w-full"
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
       />
-      <label htmlFor="search" className="ms-3 hover:cursor-pointer  w-[25px]">
+      <label htmlFor="search" className="ms-3 hover:cursor-pointer  px-3">
         {searchTerm ? <Close_icon onClick={onClose} /> : <Search_icon />}
       </label>
     </div>

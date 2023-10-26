@@ -25,7 +25,8 @@ const List = ({ Icon, text, list }) => {
           toggle && "translate-y-0 min-h-full"
         }`}
       >
-        <div className="flex justify-end me-custom-side mt-5">
+        <div className="flex justify-between items-center mx-custom-side mt-5">
+          <h2 className="text-3xl">{text}</h2>
           <button
             onClick={() => setToggle(false)}
             className="hover:underline underline-offset-8"
