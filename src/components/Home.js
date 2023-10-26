@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
+import { fetchFromApi } from "../utils/fetchFromApi";
 
 const Home = () => {
-  //fetch data
+  const [data, setData] = useState([]);
 
-  const data = [
-    { title: "Hello", text: "hello" },
-    { title: "Hello", text: "hello" },
-  ];
+  useEffect(() => {
+    fetchFromApi("titles?page=5").then((res) => setData(res.results));
+  }, []);
+
   return (
     <>
       <Layout data={data} />
