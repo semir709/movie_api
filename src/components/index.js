@@ -5,3 +5,5 @@ export { default as Search } from "./Search";
 export { default as Navigation } from "./Navigation";
 export { default as Movie } from "./Movie";
 export { default as SearchBar } from "./SearchBar";
+export { default as Card } from "./Card";
+export { default as Layout } from "./Layout";
