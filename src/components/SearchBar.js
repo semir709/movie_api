@@ -36,7 +36,11 @@ const SearchBar = () => {
         value={searchTerm}
       />
       <label htmlFor="search" className="ms-3 hover:cursor-pointer  px-3">
-        {searchTerm ? <Close_icon onClick={onClose} /> : <Search_icon />}
+        {searchTerm ? (
+          <Close_icon className="fill-black" onClick={onClose} />
+        ) : (
+          <Search_icon />
+        )}
       </label>
     </div>
   );

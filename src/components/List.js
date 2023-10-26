@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Close_icon } from "../assets";
 
 const List = ({ Icon, text, list }) => {
   const [toggle, setToggle] = useState(false);
@@ -25,20 +26,20 @@ const List = ({ Icon, text, list }) => {
           toggle && "translate-y-0 min-h-full"
         }`}
       >
-        <div className="flex justify-between items-center mx-custom-side mt-5">
-          <h2 className="text-3xl">{text}</h2>
+        <div className="flex flex-col md:flex-row justify-between items-center mx-custom-side mt-5">
+          <h2 className="text-3xl ">{text}</h2>
           <button
             onClick={() => setToggle(false)}
-            className="hover:underline underline-offset-8"
+            className=" md:mt-0 mt-[100px] "
           >
-            Close
+            <Close_icon className="fill-black w-[30px] h-[30px] md:w-[20px] md:h-[20px]" />
           </button>
         </div>
 
         <div className="w-full py-[100px] px-custom-side">
-          <ul className="grid grid-cols-5 w-full justify-items-center items-start text-2xl">
+          <ul className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3  w-full justify-items-center items-start text-2xl">
             {list.map(({ value, text }, index) => (
-              <li className="mb-5 text-center overflow-hidden " key={value}>
+              <li className="mb-5 text-center overflow-hidden px-2" key={value}>
                 <Link
                   to={`/category/${value}`}
                   onClick={() => setToggle(false)}
