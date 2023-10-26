@@ -24,7 +24,7 @@ const Navigation = () => {
           <SearchBar />
         </div>
         <div className=" items-center ">
-          <div className=" relative p-5 ">
+          <div className=" relative px-5 ">
             <div
               className="md:hidden"
               onClick={() => setToggle((prev) => !prev)}
@@ -32,7 +32,7 @@ const Navigation = () => {
               {toggle ? <Close_icon /> : <Menu_icon />}
             </div>
             <ul
-              className={`md:flex md:items-center md:static absolute top-[140%] -left-1/2 bg-custom-black py-5 pe-5 ps-1 rounded-md ${
+              className={`md:flex md:items-center md:static absolute top-[250%] -left-[30%]  bg-custom-black py-5 md:py-0  ps-1 pe-2 rounded-md ${
                 toggle ? "block" : "hidden"
               }`}
             >
