@@ -6,3 +6,4 @@ export { ReactComponent as Search_icon } from "./search.svg";
 export { ReactComponent as Close_icon } from "./close.svg";
 export { ReactComponent as Logo } from "./logo.svg";
 export { ReactComponent as Menu_icon } from "./menu.svg";
+export { ReactComponent as Star_icon } from "./star.svg";

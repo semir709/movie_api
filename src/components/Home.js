@@ -6,7 +6,7 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchFromApi("titles?page=5").then((res) => setData(res.results));
+    fetchFromApi("titles").then((res) => setData(res.results));
   }, []);
 
   return (
