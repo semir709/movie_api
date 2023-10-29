@@ -12,8 +12,7 @@ const SearchBar = () => {
     const timeID = setTimeout(() => {
       if (searchTerm) {
         navigate(`/search/${searchTerm}`);
-        // setSearchTerm("");
-      } else navigate("/");
+      }
     }, 1000);
 
     return () => clearTimeout(timeID);

@@ -8,7 +8,7 @@ function App() {
       <Navigation />
 
       <Routes>
-        <Route path={"/*"} element={<Home />} />
+        <Route path={"/"} element={<Home />} />
         <Route path={"/movie/:id"} element={<Movie />} />
         <Route path={"/search/:input"} element={<Search />} />
         <Route path={"/category/:catg"} element={<Category />} />

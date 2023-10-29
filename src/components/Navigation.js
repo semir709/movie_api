@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   Ranking_icon,
   Category_icon,
@@ -10,11 +10,32 @@ import {
 import { List, SearchBar } from "../components/index";
 import { main_filter, genres } from "../utils/constants";
 
+const styleMode = {
+  blackMode: {
+    background: "#201925",
+  },
+  pinkMode: {
+    background: "linear-gradient(#B557FF, #FFFFFF)",
+  },
+};
+
 const Navigation = () => {
   const [toggle, setToggle] = useState(true);
+  const location = useLocation();
+
+  const [mode, setMode] = useState(styleMode.blackMode);
+
+  useEffect(() => {
+    if (location.pathname.split("/")[1] === "movie") {
+      setMode(styleMode.pinkMode);
+    } else setMode(styleMode.blackMode);
+  }, []);
   return (
     <>
-      <div className="bg-custom-black py-4 sm:px-custom-side px-[30px] text-white flex items-center justify-between">
+      <div
+        className="py-4 sm:px-custom-side px-[30px] text-white flex items-center justify-between"
+        style={mode}
+      >
         <div className="flex items-center md:w-1/2 w-full pe-3 ">
           <div className="me-5">
             <Link to={"/"}>
@@ -32,7 +53,7 @@ const Navigation = () => {
               {toggle ? <Close_icon /> : <Menu_icon />}
             </div>
             <ul
-              className={`md:flex md:items-center md:static absolute top-[250%] -left-[30%]  bg-custom-black py-5 md:py-0  ps-1 pe-2 rounded-md ${
+              className={`md:flex md:items-center md:bg-transparent bg-custom-black md:static absolute top-[250%] -left-[30%] py-5 md:py-0  ps-1 pe-2 rounded-md ${
                 toggle ? "block" : "hidden"
               }`}
             >

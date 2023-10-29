@@ -6,14 +6,20 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchFromApi("titles").then((res) => setData(res.results));
+    const fetchAllData = async () => {
+      const data = await fetchFromApi("titles").then((res) => {
+        const resul = res.results;
+
+        // const newData = resul.map(async (obj) => {
+        //   const newData = await fetchAllData(`titles/${obj.id}/ratings`);
+        // });
+      });
+    };
+
+    // fetchAllData();
   }, []);
 
-  return (
-    <>
-      <Layout data={data} />
-    </>
-  );
+  return <>{/* <Layout data={data} /> */}</>;
 };
 
 export default Home;
