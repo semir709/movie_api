@@ -2,7 +2,6 @@ import React from "react";
 import Card from "./Card";
 
 const Layout = ({ data }) => {
-  console.log(data);
   return (
     <div className="mt-5 px-custom-side flex flex-wrap gap-7  w-full justify-center">
       {data.map((item) => (

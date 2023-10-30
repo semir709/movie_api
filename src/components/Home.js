@@ -7,19 +7,23 @@ const Home = () => {
 
   useEffect(() => {
     const fetchAllData = async () => {
-      const data = await fetchFromApi("titles").then((res) => {
-        const resul = res.results;
-
-        // const newData = resul.map(async (obj) => {
-        //   const newData = await fetchAllData(`titles/${obj.id}/ratings`);
-        // });
+      const movies = await fetchFromApi("titles?info=base_info").then((res) => {
+        return res.results;
       });
+
+      setData(movies);
     };
 
-    // fetchAllData();
+    fetchAllData();
+
+    // console.log(data);
   }, []);
 
-  return <>{/* <Layout data={data} /> */}</>;
+  return (
+    <>
+      <Layout data={data} />{" "}
+    </>
+  );
 };
 
 export default Home;
