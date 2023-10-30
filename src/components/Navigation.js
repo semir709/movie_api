@@ -11,10 +11,10 @@ import { List, SearchBar } from "../components/index";
 import { main_filter, genres } from "../utils/constants";
 
 const styleMode = {
-  blackMode: {
+  mainMode: {
     background: "#201925",
   },
-  pinkMode: {
+  movieMode: {
     background: "linear-gradient(#B557FF, #FFFFFF)",
   },
 };
@@ -23,18 +23,18 @@ const Navigation = () => {
   const [toggle, setToggle] = useState(true);
   const location = useLocation();
 
-  const [mode, setMode] = useState(styleMode.blackMode);
+  const [styleBase, setStyleBase] = useState(true);
 
   useEffect(() => {
     if (location.pathname.split("/")[1] === "movie") {
-      setMode(styleMode.pinkMode);
-    } else setMode(styleMode.blackMode);
-  }, []);
+      setStyleBase(false);
+    } else setStyleBase(true);
+  }, [location.pathname]);
   return (
     <>
       <div
         className="py-4 sm:px-custom-side px-[30px] text-white flex items-center justify-between"
-        style={mode}
+        style={styleBase ? styleMode.mainMode : styleMode.movieMode}
       >
         <div className="flex items-center md:w-1/2 w-full pe-3 ">
           <div className="me-5">
