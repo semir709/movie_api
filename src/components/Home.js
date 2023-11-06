@@ -3,25 +3,25 @@ import Layout from "./Layout";
 import { fetchFromApi } from "../utils/fetchFromApi";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchAllData = async () => {
-      const movies = await fetchFromApi("titles?info=base_info").then((res) => {
-        return res.results;
-      });
+  // useEffect(() => {
+  //   const fetchAllData = async () => {
+  //     const movies = await fetchFromApi("titles?info=base_info").then((res) => {
+  //       return res.results;
+  //     });
 
-      setData(movies);
-    };
+  //     setData(movies);
+  //   };
 
-    fetchAllData();
+  //   fetchAllData();
 
-    // console.log(data);
-  }, []);
+  //   // console.log(data);
+  // }, []);
 
   return (
     <>
-      <Layout data={data} />{" "}
+      <Layout fetchRequest={"titles?info=base_info"} />
     </>
   );
 };

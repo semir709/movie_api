@@ -7,7 +7,7 @@ const Card = ({ data }) => {
   const [rating, setRating] = useState([0, 0, 0, 0, 0]);
 
   useState(() => {
-    const score = Math.round(ratingsSummary.aggregateRating / 2);
+    const score = Math.round(ratingsSummary?.aggregateRating / 2);
     setRating((prev) => {
       return prev.map((val, index) => {
         if (index < score) {
