@@ -19,7 +19,9 @@ const Layout = ({ fetchRequest }) => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
+        setLoading(true);
         fetchFromApi(fetchRequest + `&page=${page}`).then((res) => {
+          setLoading(false);
           setData((prev) => {
             return [...prev, ...res.results];
           });
@@ -47,7 +49,7 @@ const Layout = ({ fetchRequest }) => {
         <Card data={item} />
       ))}
       <div ref={target}></div>
-      {/* {loading ? <p>Loading...</p> : <div ref={target}></div>} */}
+      {loading && <p>Loading...</p>}
     </div>
   );
 };
