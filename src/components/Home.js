@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
-import { fetchFromApi } from "../utils/fetchFromApi";
 
 const Home = () => {
   // const [data, setData] = useState([]);
@@ -21,7 +20,7 @@ const Home = () => {
 
   return (
     <>
-      <Layout fetchRequest={"titles?info=base_info"} />
+      <Layout fetchRequest={"titles?info=base_info&limit=20"} />
     </>
   );
 };
