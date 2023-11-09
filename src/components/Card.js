@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Star_icon } from "../assets";
 import { Link } from "react-router-dom";
+import { no_image } from "../assets/index";
 
 const Card = ({ data }) => {
   const { id, originalTitleText, primaryImage, ratingsSummary } = data;
@@ -19,6 +20,8 @@ const Card = ({ data }) => {
 
   if (!data) return <p>Loade..</p>;
 
+  console.log(no_image);
+
   return (
     <Link to={`/movie/${id}`}>
       <div
@@ -28,7 +31,11 @@ const Card = ({ data }) => {
       >
         <div className="overflow-hidden w-full h-full">
           <div
-            style={{ backgroundImage: `url(${primaryImage?.url})` }}
+            style={{
+              backgroundImage: primaryImage
+                ? `url(${primaryImage?.url})`
+                : `url(${no_image})`,
+            }}
             className="w-full h-full bg-cover group-hover:scale-110 duration-200"
           ></div>
         </div>

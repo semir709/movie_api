@@ -33,7 +33,7 @@ const Navigation = () => {
   return (
     <>
       <div
-        className="py-4 sm:px-custom-side px-[30px] text-white flex items-center justify-between"
+        className="py-4 sm:px-custom-side px-[30px] text-white flex items-center justify-between "
         style={styleBase ? styleMode.mainMode : styleMode.movieMode}
       >
         <div className="flex items-center md:w-1/2 w-full pe-3 ">

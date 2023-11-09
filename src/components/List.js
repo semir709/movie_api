@@ -12,7 +12,6 @@ const List = ({ Icon, text, list }) => {
       return;
     }
 
-    console.log(current);
     const timeId = setInterval(() => {
       setCurrent((prev) => (prev < list.length - 1 ? prev + 1 : prev));
     }, 10);
@@ -22,7 +21,7 @@ const List = ({ Icon, text, list }) => {
   return (
     <>
       <div
-        className={`w-full min-h-0 bg-custom-white text-custom-black fixed top-0 -translate-y-full transition-all left-0 ${
+        className={`w-full min-h-0 bg-custom-white text-custom-black fixed z-50 top-0 -translate-y-full transition-all left-0 ${
           toggle && "translate-y-0 min-h-full"
         }`}
       >

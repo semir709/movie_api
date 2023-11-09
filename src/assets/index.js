@@ -9,3 +9,4 @@ export { ReactComponent as Menu_icon } from "./menu.svg";
 export { ReactComponent as Star_icon } from "./star.svg";
 export { ReactComponent as Loading_icon } from "./loading.svg";
 export { ReactComponent as Message_end } from "./message_end.svg";
+export { default as no_image } from "./no-image.svg";

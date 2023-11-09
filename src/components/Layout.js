@@ -2,23 +2,33 @@ import React, { useEffect, useRef, useState } from "react";
 import Card from "./Card";
 import { fetchFromApi } from "../utils/fetchFromApi";
 import { Loading_icon, Message_end } from "../assets/index";
+import { useLocation } from "react-router-dom";
 
 const Layout = ({ fetchRequest }) => {
   const target = useRef(null);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const maxPage = 50;
+  let page = 1;
+  const maxPage = 50; //How to define when we don't have any new data
+
+  useEffect(() => {
+    fetchFromApi(fetchRequest + `&page=${page}`).then((res) => {
+      setData([...res.results]);
+      setLoading(false);
+    });
+  }, [fetchRequest]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
+        page++;
         setLoading(true);
+        console.log(fetchRequest + `&page=${page}`);
         fetchFromApi(fetchRequest + `&page=${page}`).then((res) => {
           setData((prev) => {
             return [...prev, ...res.results];
           });
-          setPage((prev) => prev + 1);
+
           setLoading(false);
         });
       }
