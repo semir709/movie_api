@@ -3,13 +3,13 @@ import Card from "./Card";
 import { fetchFromApi } from "../utils/fetchFromApi";
 import { Loading_icon, Message_end } from "../assets/index";
 import { useLocation } from "react-router-dom";
-
 const Layout = ({ fetchRequest }) => {
   const target = useRef(null);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  // const [page, setPage] = useState(1);
   let page = 1;
-  const maxPage = 50; //How to define when we don't have any new data
+  const maxPage = 5; //How to define when we don't have any new data
 
   useEffect(() => {
     fetchFromApi(fetchRequest + `&page=${page}`).then((res) => {
@@ -21,9 +21,8 @@ const Layout = ({ fetchRequest }) => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        page++;
         setLoading(true);
-        console.log(fetchRequest + `&page=${page}`);
+        page++;
         fetchFromApi(fetchRequest + `&page=${page}`).then((res) => {
           setData((prev) => {
             return [...prev, ...res.results];
@@ -47,21 +46,22 @@ const Layout = ({ fetchRequest }) => {
 
   return (
     <div className="mt-5 px-custom-side flex flex-wrap gap-7  w-full justify-center mb-5">
-      {data && data.map((item, index) => <Card data={item} />)}
-      {page < maxPage && <div className="w-full" ref={target}></div>}
-
+      {data.map((item, index) => (
+        <Card data={item} />
+      ))}
+      <div className="w-full" ref={target}></div>
       {loading && (
-        <div className="w-full flex justify-center">
-          <Loading_icon className="animate-spin" />
+        <div className="animate-spin">
+          <Loading_icon />
         </div>
       )}
 
-      {page === maxPage && (
+      {/* {page === maxPage && (
         <div className="flex flex-col items-center">
           <span className="mb-4 text-2xl">You reached the end !!!</span>
           <Message_end />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
