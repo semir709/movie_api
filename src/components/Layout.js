@@ -7,6 +7,7 @@ const Layout = ({ fetchRequest }) => {
   const target = useRef(null);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [end, setEnd] = useState(false);
   // const [page, setPage] = useState(1);
   let page = 1;
   const maxPage = 5; //How to define when we don't have any new data
@@ -29,6 +30,8 @@ const Layout = ({ fetchRequest }) => {
           });
 
           setLoading(false);
+
+          if (page === maxPage) setEnd(true);
         });
       }
     });
@@ -49,19 +52,19 @@ const Layout = ({ fetchRequest }) => {
       {data.map((item, index) => (
         <Card data={item} />
       ))}
-      <div className="w-full" ref={target}></div>
-      {loading && (
+      {!end && <div className="w-full" ref={target}></div>}
+      {loading && !end && (
         <div className="animate-spin">
           <Loading_icon />
         </div>
       )}
 
-      {/* {page === maxPage && (
+      {end && (
         <div className="flex flex-col items-center">
           <span className="mb-4 text-2xl">You reached the end !!!</span>
           <Message_end />
         </div>
-      )} */}
+      )}
     </div>
   );
 };
