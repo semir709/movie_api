@@ -12,7 +12,6 @@ function App() {
         <Route path={"/movie/:id"} element={<Movie />} />
         <Route path={"/search/:input"} element={<Search />} />
         <Route path={"/category/:catg"} element={<Category />} />
-        <Route path={"/list/:list"} element={<List />} />
       </Routes>
     </>
   );

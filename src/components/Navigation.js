@@ -58,14 +58,11 @@ const Navigation = () => {
               }`}
             >
               <li className="cursor-pointer my-2 md:mx-3">
-                <List text={"Category"} Icon={Category_icon} list={genres} />
-              </li>
-
-              <li className=" cursor-pointer my-2 md:mx-3">
                 <List
-                  text={"Rankings"}
-                  Icon={Ranking_icon}
-                  list={main_filter}
+                  text={"Category"}
+                  Icon={Category_icon}
+                  list={genres}
+                  group={"category"}
                 />
               </li>
             </ul>

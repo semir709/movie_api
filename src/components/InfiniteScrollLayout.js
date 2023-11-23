@@ -6,27 +6,35 @@ const InfiniteScrollLayout = ({ fetchRequest }) => {
   const target = useRef(null);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [end, setEnd] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
-  const maxPage = 5; //How to define when we don't have any new data
-  const [isIntersect, setIsIntersect] = useState(false);
   const [errorMesage, setErrorMesage] = useState("");
 
-  // First request
-  useEffect(() => {
-    setLoading(true);
-    setEnd(false);
-    setPage(1);
-    fetchFromApi(fetchRequest + `&page=${page}`).then((res) => {
-      setData([...res.results]);
-      setLoading(false);
-    });
-  }, [fetchRequest]);
+  const fetchData = () => {
+    fetchFromApi(fetchRequest + `&page=${page}`)
+      .then((res) => {
+        if (res.results.length === 0) setHasMore(false);
+        else {
+          setData((prev) => {
+            return [...prev, ...res.results];
+          });
 
-  //Creating observer
+          setPage((prev) => prev + 1);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMesage(err);
+      });
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(([entries]) => {
-      setIsIntersect(entries.isIntersecting);
+      //fetch the data
+      if (entries.isIntersecting && hasMore) {
+        fetchData();
+      }
     });
 
     if (target.current) {
@@ -36,42 +44,21 @@ const InfiniteScrollLayout = ({ fetchRequest }) => {
     return () => {
       observer.disconnect(target.current);
     };
-  }, [fetchRequest, target.current]);
-
-  //fetching every nexe page
-  useEffect(() => {
-    if (isIntersect) {
-      setLoading(true);
-      setPage((prev) => prev + 1);
-
-      fetchFromApi(fetchRequest + `&page=${page}`)
-        .then((res) => {
-          setData((prev) => {
-            return [...prev, ...res.results];
-          });
-          setLoading(false);
-          if (page === maxPage) setEnd(true);
-        })
-        .catch((err) => {
-          console.log(err);
-          setErrorMesage(err);
-        });
-    }
-  }, [isIntersect]);
+  }, [data]);
 
   return (
     <div className="mt-5 px-custom-side flex flex-wrap gap-7  w-full justify-center mb-5">
-      {errorMesage.length > 0 && <p>{errorMesage}</p>}
+      {/* {errorMesage.length > 0 && <p>{errorMesage}</p>} */}
       {data.map((item, index) => (
         <Card data={item} key={index} />
       ))}
-      {!end && <div className="w-full " ref={target}></div>}
-      {loading && !end && (
+      <div className="w-full " ref={target}></div>
+      {loading && (
         <div className="animate-spin">
           <Loading_icon />
         </div>
       )}
-      {end && (
+      {!hasMore && (
         <div className="flex flex-col items-center">
           <span className="mb-4 text-2xl">You reached the end !!!</span>
           <Message_end />
