@@ -8,15 +8,23 @@ const InfiniteScrollLayout = ({ fetchRequest }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(1);
+  const [errorMesage, setErrorMesage] = useState("");
   const [newRequest, setNewRequest] = useState(null);
+  let page = 1;
 
   useEffect(() => {
     const fetchData = async () => {
-      const obj = await fetchFromApi(fetchRequest + `&page=${page}`);
-      setData([...obj.results]);
-      setNewRequest(fetchRequest);
+      try {
+        const obj = await fetchFromApi(fetchRequest + `&page=${page}`);
+        setData([...obj.results]);
+        setNewRequest(fetchRequest);
+        setLoading(false);
+      } catch (err) {
+        setErrorMesage(err);
+      }
     };
+    page = 1;
+    setLoading(true);
     fetchData();
   }, [fetchRequest]);
 
@@ -26,9 +34,19 @@ const InfiniteScrollLayout = ({ fetchRequest }) => {
     const observer = new IntersectionObserver(([entries]) => {
       if (entries.isIntersecting && hasMore) {
         const fetchData = async () => {
-          const obj = await fetchFromApi(newRequest + `&page=${page}`);
-          setData((prev) => [...prev, ...obj.results]);
+          try {
+            const obj = await fetchFromApi(newRequest + `&page=${page}`);
+
+            if (obj.results.length === 0) setHasMore(false);
+            else setData((prev) => [...prev, ...obj.results]);
+
+            setLoading(false);
+          } catch (err) {
+            setErrorMesage(err);
+          }
         };
+        setLoading(true);
+        page = page + 1;
         fetchData();
       }
     });
@@ -44,22 +62,22 @@ const InfiniteScrollLayout = ({ fetchRequest }) => {
 
   return (
     <div className="mt-5 px-custom-side flex flex-wrap gap-7  w-full justify-center mb-5">
-      {/* {errorMesage.length > 0 && <p>{errorMesage}</p>} */}
+      {errorMesage.length > 0 && <p>{errorMesage}</p>}
       {data.map((item, index) => (
         <Card data={item} key={index} />
       ))}
-      <div className="w-full bg-red-300  p-5" ref={target}></div>
-      {/* {loading && (
+      <div className="w-full" ref={target}></div>
+      {loading && (
         <div className="animate-spin">
           <Loading_icon />
         </div>
-      )} */}
-      {/* {!hasMore && (
+      )}
+      {!hasMore && (
         <div className="flex flex-col items-center">
           <span className="mb-4 text-2xl">You reached the end !!!</span>
           <Message_end />
         </div>
-      )} */}
+      )}
     </div>
   );
 };
