@@ -2,37 +2,33 @@ import React, { useEffect, useRef, useState } from "react";
 import Card from "./Card";
 import { fetchFromApi } from "../utils/fetchFromApi";
 import { Loading_icon, Message_end } from "../assets/index";
+
 const InfiniteScrollLayout = ({ fetchRequest }) => {
   const target = useRef(null);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
-  const [errorMesage, setErrorMesage] = useState("");
-
-  const fetchData = () => {
-    fetchFromApi(fetchRequest + `&page=${page}`)
-      .then((res) => {
-        if (res.results.length === 0) setHasMore(false);
-        else {
-          setData((prev) => {
-            return [...prev, ...res.results];
-          });
-
-          setPage((prev) => prev + 1);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorMesage(err);
-      });
-  };
+  const [newRequest, setNewRequest] = useState(null);
 
   useEffect(() => {
+    const fetchData = async () => {
+      const obj = await fetchFromApi(fetchRequest + `&page=${page}`);
+      setData([...obj.results]);
+      setNewRequest(fetchRequest);
+    };
+    fetchData();
+  }, [fetchRequest]);
+
+  useEffect(() => {
+    if (data.length === 0) return;
+
     const observer = new IntersectionObserver(([entries]) => {
-      //fetch the data
       if (entries.isIntersecting && hasMore) {
+        const fetchData = async () => {
+          const obj = await fetchFromApi(newRequest + `&page=${page}`);
+          setData((prev) => [...prev, ...obj.results]);
+        };
         fetchData();
       }
     });
@@ -44,7 +40,7 @@ const InfiniteScrollLayout = ({ fetchRequest }) => {
     return () => {
       observer.disconnect(target.current);
     };
-  }, [data]);
+  }, [newRequest]);
 
   return (
     <div className="mt-5 px-custom-side flex flex-wrap gap-7  w-full justify-center mb-5">
@@ -52,18 +48,18 @@ const InfiniteScrollLayout = ({ fetchRequest }) => {
       {data.map((item, index) => (
         <Card data={item} key={index} />
       ))}
-      <div className="w-full " ref={target}></div>
-      {loading && (
+      <div className="w-full bg-red-300  p-5" ref={target}></div>
+      {/* {loading && (
         <div className="animate-spin">
           <Loading_icon />
         </div>
-      )}
-      {!hasMore && (
+      )} */}
+      {/* {!hasMore && (
         <div className="flex flex-col items-center">
           <span className="mb-4 text-2xl">You reached the end !!!</span>
           <Message_end />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
