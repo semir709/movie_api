@@ -13,3 +13,11 @@ export const fetchFromApi = async (url) => {
   const { data } = await axios.get(`${BASE_URL}/${url}`, options);
   return data;
 };
+
+export const fetchFromApiAll = async (...url) => {
+  const data = await axios.all(
+    url.map((endpoint) => axios.get(`${BASE_URL}/${endpoint}`, options))
+  );
+
+  return data;
+};
