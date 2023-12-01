@@ -25,9 +25,9 @@ const styleMode = {
   },
 };
 
-const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const SearchBar = ({ searchTerm, setSearchTerm }) => {
   const input = useRef(null);
+
   const navigate = useNavigate();
 
   const [styleBase, setStyleBase] = useState(true);
@@ -41,7 +41,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     const timeID = setTimeout(() => {
-      if (searchTerm) {
+      if (searchTerm.length > 0) {
         navigate(`/search/${searchTerm}`);
       }
     }, 1000);
@@ -50,7 +50,7 @@ const SearchBar = () => {
   }, [searchTerm]);
 
   const onClose = () => {
-    navigate("/");
+    navigate("/"); //prevous visited acutally
     setSearchTerm("");
     input.current.focus();
   };

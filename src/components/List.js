@@ -2,9 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Close_icon } from "../assets";
 
-const List = ({ Icon, text, list, group }) => {
+const List = ({ Icon, text, list, group, setSearchTerm }) => {
   const [toggle, setToggle] = useState(false);
   const [current, setCurrent] = useState(-1);
+
+  const whenClick = () => {
+    setSearchTerm("");
+    setToggle(false);
+  };
 
   useEffect(() => {
     if (toggle === false) {
@@ -39,10 +44,7 @@ const List = ({ Icon, text, list, group }) => {
           <ul className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3  w-full justify-items-center items-start text-2xl">
             {list.map(({ value, text }, index) => (
               <li className="mb-5 text-center overflow-hidden px-2" key={value}>
-                <Link
-                  to={`/${group}/${value}`}
-                  onClick={() => setToggle(false)}
-                >
+                <Link to={`/${group}/${value}`} onClick={whenClick}>
                   <div
                     className={`duration-200 hover:underline`}
                     style={

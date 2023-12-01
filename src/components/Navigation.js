@@ -22,6 +22,7 @@ const styleMode = {
 const Navigation = () => {
   const [toggle, setToggle] = useState(true);
   const location = useLocation();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const [styleBase, setStyleBase] = useState(true);
 
@@ -38,11 +39,11 @@ const Navigation = () => {
       >
         <div className="flex items-center md:w-1/2 w-full pe-3 ">
           <div className="me-5">
-            <Link to={"/"}>
+            <Link to={"/"} onClick={() => setSearchTerm("")}>
               <Logo className="hover:fill-custom-pink" />
             </Link>
           </div>
-          <SearchBar />
+          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </div>
         <div className=" items-center ">
           <div className=" relative px-5 ">
@@ -59,6 +60,7 @@ const Navigation = () => {
             >
               <li className="cursor-pointer my-2 md:mx-3">
                 <List
+                  setSearchTerm={setSearchTerm}
                   text={"Category"}
                   Icon={Category_icon}
                   list={genres}
