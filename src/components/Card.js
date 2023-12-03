@@ -4,16 +4,7 @@ import { Link } from "react-router-dom";
 import { no_image } from "../assets/index";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
-const caculateRating = (prev, ratingsSummary) => {
-  const score = Math.round(ratingsSummary?.aggregateRating / 2);
-  const result = prev.map((val, index) => {
-    if (index < score) {
-      return 1;
-    } else return 0;
-  });
-  return result;
-};
+import { caculateRating } from "../utils/fetchFromApi";
 
 const Card = ({ data }) => {
   const { id, originalTitleText, primaryImage, ratingsSummary } = data;

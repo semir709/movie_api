@@ -15,7 +15,7 @@ const styleMode = {
     background: "#201925",
   },
   movieMode: {
-    background: "linear-gradient(#B557FF, #FFFFFF)",
+    background: "linear-gradient(#B557FF, transparent)",
   },
 };
 
@@ -34,7 +34,7 @@ const Navigation = () => {
   return (
     <>
       <div
-        className="py-4 sm:px-custom-side px-[30px] text-white flex items-center justify-between "
+        className="py-4 sm:px-custom-side px-[30px] text-white flex items-center justify-between fixed w-full z-10"
         style={styleBase ? styleMode.mainMode : styleMode.movieMode}
       >
         <div className="flex items-center md:w-1/2 w-full pe-3 ">

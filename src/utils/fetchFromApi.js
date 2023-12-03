@@ -21,3 +21,13 @@ export const fetchFromApiAll = async (...url) => {
 
   return data;
 };
+
+export const caculateRating = (prev, ratingsSummary) => {
+  const score = Math.round(ratingsSummary?.aggregateRating / 2);
+  const result = prev.map((val, index) => {
+    if (index < score) {
+      return 1;
+    } else return 0;
+  });
+  return result;
+};
