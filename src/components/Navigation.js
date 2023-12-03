@@ -15,7 +15,7 @@ const styleMode = {
     background: "#201925",
   },
   movieMode: {
-    background: "linear-gradient(#B557FF, transparent)",
+    background: "linear-gradient(rgba(181,87,255,0.2), transparent)",
   },
 };
 
