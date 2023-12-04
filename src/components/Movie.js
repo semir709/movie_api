@@ -35,9 +35,6 @@ const Movie = () => {
     setRating(caculateRating(rating, data?.ratingsSummary));
   }, [data]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   return (
     <>
       <main className="w-full h-screen relative">
@@ -48,8 +45,8 @@ const Movie = () => {
         />
         <div className="bg-black w-full h-full absolute top-0 left-0 opacity-80 "></div>
 
-        <div className="absolute top-1/2 w-full -translate-y-1/2 left-0 px-custom-side">
-          <div className="w-1/2">
+        <div className="absolute top-1/2 w-full -translate-y-1/2 left-0 md:px-custom-side px-5 ">
+          <div className="md:w-1/2 w-full md:block flex items-center flex-col ">
             <h1 className="text-white text-6xl mb-5">
               {data?.originalTitleText?.text}
             </h1>
@@ -75,7 +72,7 @@ const Movie = () => {
               </span>
             </div>
 
-            <article className="text-white text-lg ">
+            <article className="text-white text-lg md:text-left text-center">
               {data?.plot?.plotText?.plainText}
             </article>
           </div>

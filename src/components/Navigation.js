@@ -20,7 +20,7 @@ const styleMode = {
 };
 
 const Navigation = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
 
