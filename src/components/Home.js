@@ -4,9 +4,13 @@ import InfiniteScrollLayout from "./InfiniteScrollLayout";
 const Home = () => {
   return (
     <>
-      <InfiniteScrollLayout
-        fetchRequest={"titles?info=base_info&limit=20&list=top_boxoffice_200"}
-      />
+      <div className="mt-[100px]">
+        <InfiniteScrollLayout
+          fetchRequest={
+            "titles/random?info=base_info&limit=20&list=top_boxoffice_200"
+          }
+        />
+      </div>
     </>
   );
 };

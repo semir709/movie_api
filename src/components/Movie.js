@@ -11,6 +11,7 @@ const Movie = () => {
   const [data, setData] = useState(null);
   const [moreData, setMoreData] = useState([]);
   const [rating, setRating] = useState([0, 0, 0, 0, 0]);
+
   const url = useLocation();
   const id = url.pathname.split("/").pop();
   useEffect(() => {

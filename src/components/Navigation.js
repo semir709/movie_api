@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  Ranking_icon,
-  Category_icon,
-  Logo,
-  Menu_icon,
-  Close_icon,
-} from "../assets";
+import { Category_icon, Logo, Menu_icon, Close_icon } from "../assets";
 import { List, SearchBar } from "../components/index";
-import { main_filter, genres } from "../utils/constants";
+import { genres } from "../utils/constants";
 
 const styleMode = {
   mainMode: {
@@ -34,7 +28,7 @@ const Navigation = () => {
   return (
     <>
       <div
-        className="py-4 sm:px-custom-side px-[30px] text-white flex items-center justify-between fixed w-full z-10"
+        className="py-4 sm:px-custom-side px-[30px] text-white flex items-center justify-between fixed w-full z-10 top-0"
         style={styleBase ? styleMode.mainMode : styleMode.movieMode}
       >
         <div className="flex items-center md:w-1/2 w-full pe-3 ">
@@ -60,6 +54,7 @@ const Navigation = () => {
             >
               <li className="cursor-pointer my-2 md:mx-3">
                 <List
+                  parentToggle={setToggle}
                   setSearchTerm={setSearchTerm}
                   text={"Category"}
                   Icon={Category_icon}

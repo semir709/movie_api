@@ -8,9 +8,11 @@ const Category = () => {
 
   return (
     <>
-      <InfiniteScrollLayout
-        fetchRequest={`titles?info=base_info&limit=20&genre=${path}&startYear=2010&endYear=2023&sort=year.decr`}
-      />
+      <div className="mt-[100px]">
+        <InfiniteScrollLayout
+          fetchRequest={`titles?info=base_info&limit=20&genre=${path}&startYear=2010&endYear=2023&sort=year.decr`}
+        />
+      </div>
     </>
   );
 };

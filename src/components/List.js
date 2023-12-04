@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Close_icon } from "../assets";
 
-const List = ({ Icon, text, list, group, setSearchTerm }) => {
+const List = ({ Icon, text, list, group, setSearchTerm, parentToggle }) => {
   const [toggle, setToggle] = useState(false);
   const [current, setCurrent] = useState(-1);
 
   const whenClick = () => {
     setSearchTerm("");
     setToggle(false);
+    parentToggle(false);
   };
 
   useEffect(() => {

@@ -39,8 +39,9 @@ const Search = () => {
 
   return (
     <>
-      <div className="mt-5 px-custom-side flex flex-wrap gap-7  w-full justify-center mb-5">
+      <div className=" px-custom-side flex flex-wrap gap-7  w-full justify-center mb-5 mt-[100px]">
         {errorMesage.length > 0 && <p>{errorMesage}</p>}
+        {data.length === 0 && <p>Nothing found :D</p>}
         {data.map((item, index) => (
           <Card data={item} key={index} />
         ))}
