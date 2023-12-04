@@ -22,11 +22,8 @@ const Card = ({ data }) => {
 
   return (
     <>
-      <Link to={`/movie/${id}`}>
-        <div
-          key={id}
-          className="w-[220px] h-[250px] bg-no-repeat bg-cover relative cursor-pointer text-white group "
-        >
+      <Link to={`/movie/${id}`} key={id}>
+        <div className="w-[220px] h-[250px] bg-no-repeat bg-cover relative cursor-pointer text-white group ">
           <div className="overflow-hidden w-full h-full ">
             {isLoading ? (
               <Skeleton
@@ -51,11 +48,11 @@ const Card = ({ data }) => {
             </h2>
             {!isLoading && (
               <div className="flex w-full justify-center">
-                {rating.map((val) =>
+                {rating.map((val, index) =>
                   val === 1 ? (
-                    <Star_icon className="fill-custom-pink" />
+                    <Star_icon key={index} className="fill-custom-pink" />
                   ) : (
-                    <Star_icon />
+                    <Star_icon key={index} />
                   )
                 )}
               </div>

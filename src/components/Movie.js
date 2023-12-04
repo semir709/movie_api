@@ -53,11 +53,14 @@ const Movie = () => {
             </h1>
 
             <div className="flex mb-5">
-              {rating.map((val) =>
+              {rating.map((val, index) =>
                 val === 1 ? (
-                  <Star_icon className="fill-custom-pink w-[50px] h-[50px]" />
+                  <Star_icon
+                    key={index}
+                    className="fill-custom-pink w-[50px] h-[50px]"
+                  />
                 ) : (
-                  <Star_icon className="w-[50px] h-[50px]" />
+                  <Star_icon key={index} className="w-[50px] h-[50px]" />
                 )
               )}
             </div>
