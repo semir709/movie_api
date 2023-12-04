@@ -35,6 +35,7 @@ const Card = ({ data }) => {
             ) : null}
             <img
               ref={element}
+              onError={() => (element.current.src = no_image)}
               src={primaryImage ? primaryImage?.url : no_image}
               className={`w-full h-full bg-cover group-hover:scale-110 duration-200  ${
                 isLoading && "hidden"
